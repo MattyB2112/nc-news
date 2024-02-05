@@ -24,15 +24,8 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
 }
 
 button {
@@ -66,3 +59,40 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.nav-bar {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.flex-box-left-holder {
+  width: 300px;
+  height: 50px;
+  border: solid black;
+  display: flex;
+  border-width: 2px;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.nav-header {
+  justify-content: center;
+  align-self: center;
+}
+
+.flex-box-right-holder {
+  width: 200px;
+  height: 50px;
+  border: solid black;
+  display: flex;
+  border-width: 2px;
+  align-items: center;
+  justify-content: center;
+}
+
+/*justify-content
+flex-start: Items align to the left side of the container.
+flex-end: Items align to the right side of the container.
+center: Items align at the center of the container.
+space-between: Items display with equal spacing between them.
+space-around: Items display with equal spacing around them. */
