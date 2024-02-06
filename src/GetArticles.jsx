@@ -1,11 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import Articalizer from "./Articalizer";
 
-export default function ArticleHolder() {
+export default function GetArticles() {
   const [articles, setArticles] = useState([]);
-  const [mostCommentedCooking, setMostCommentedCooking] = "";
-  const [mostCommentedCoding, setMostCommentedCoding] = "";
-  const [mostCommentedFootball, setMostCommentedFootball] = "";
 
   useEffect(() => {
     fetch("https://nc-news-itve.onrender.com/api/articles")
@@ -16,6 +13,5 @@ export default function ArticleHolder() {
         setArticles(result.articles);
       });
   }, []);
-
   return <Articalizer articles={articles} />;
 }

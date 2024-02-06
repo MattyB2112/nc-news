@@ -63,6 +63,7 @@ button:focus-visible {
 .nav-bar {
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
 }
 
 .flex-box-left-holder {
@@ -77,7 +78,6 @@ button:focus-visible {
 
 .nav-header {
   justify-content: center;
-  align-self: center;
 }
 
 .flex-box-right-holder {
@@ -88,6 +88,15 @@ button:focus-visible {
   border-width: 2px;
   align-items: center;
   justify-content: center;
+}
+
+.article-header-holder {
+  display: flex;
+  justify-content: space-around;
+}
+
+.article-text {
+  text-align: justify;
 }
 
 /*justify-content
