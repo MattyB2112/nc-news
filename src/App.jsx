@@ -1,8 +1,9 @@
 import { useState } from "react";
 import "./App.css";
 import Header from "./Header";
-import { Routes, Route } from "react-router-dom";
-import ArticleHolder from "./ArticleHolder";
+import { Routes, Route, useParams } from "react-router-dom";
+import GetArticle from "./GetArticle";
+import GetArticles from "./GetArticles";
 
 export default function App() {
   return (
@@ -11,7 +12,10 @@ export default function App() {
         <Header />
       </nav>
       <Routes>
-        <Route path="/" element={<ArticleHolder />} />
+        <Route path="" element={<GetArticles />} />
+      </Routes>
+      <Routes>
+        <Route path="/:article_id" element={<GetArticle />} />
       </Routes>
     </>
   );

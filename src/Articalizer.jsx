@@ -1,15 +1,12 @@
 import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Button from "@mui/material/Button";
+import { Button, CardActionArea } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import CssBaseline from "@mui/material/CssBaseline";
 import Grid from "@mui/material/Grid";
-import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Link from "@mui/material/Link";
@@ -18,10 +15,6 @@ const defaultTheme = createTheme();
 
 export default function Articalizer(props) {
   const { articles } = props;
-  const cards = [];
-  for (let i = 0; i < articles?.length; i++) {
-    cards.push(articles[i]);
-  }
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -30,7 +23,7 @@ export default function Articalizer(props) {
         {/* Hero unit */}
         <Container sx={{ py: 8 }} maxWidth="md">
           {/* End hero unit */}
-          <Grid container spacing={5}>
+          <Grid container spacing={4}>
             {articles.map((article) => (
               <Grid item key={articles.article_id} xs={12} sm={6} md={4}>
                 <Card
@@ -40,14 +33,19 @@ export default function Articalizer(props) {
                     flexDirection: "column",
                   }}
                 >
-                  <CardMedia
-                    component="div"
-                    sx={{
-                      // 16:9
-                      pt: "56.25%",
-                    }}
-                    image={article.article_img_url}
-                  />
+                  <CardActionArea component="div">
+                    <Link href={`http://localhost:5173/${article.article_id}`}>
+                      <CardMedia
+                        component="div"
+                        sx={{
+                          // 16:9
+                          pt: "56.25%",
+                        }}
+                        image={article.article_img_url}
+                      />
+                    </Link>
+                  </CardActionArea>
+
                   <CardContent sx={{ flexGrow: 1 }}>
                     <Typography gutterBottom variant="h5" component="h2">
                       {article.topic}
@@ -56,6 +54,7 @@ export default function Articalizer(props) {
                       <p>{article.title}</p>
                     </Typography>
                   </CardContent>
+
                   <CardActions>
                     <Button size="small">{article.votes} Votes</Button>
                     <Button size="small">
