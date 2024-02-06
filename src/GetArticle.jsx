@@ -1,8 +1,9 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import GetComments from "./GetComments";
 
 export default function GetArticle() {
-  const { article_id } = useParams();
+  let { article_id } = useParams();
   const [articleItem, setArticleItem] = useState([]);
 
   useEffect(() => {
@@ -24,6 +25,7 @@ export default function GetArticle() {
       </div>
       <img src={articleItem.article_img_url} alt={articleItem.topic} />
       <p className="article-text">{articleItem.body}</p>
+      <GetComments article_id={articleItem.article_id} />
     </div>
   );
 }
