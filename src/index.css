@@ -99,6 +99,10 @@ button:focus-visible {
   text-align: justify;
 }
 
+.comments {
+  text-align: left;
+}
+
 /*justify-content
 flex-start: Items align to the left side of the container.
 flex-end: Items align to the right side of the container.

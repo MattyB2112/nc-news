@@ -34,7 +34,7 @@ export default function Articalizer(props) {
                   }}
                 >
                   <CardActionArea component="div">
-                    <Link href={`http://localhost:5173/${article.article_id}`}>
+                    <Link href={`/${article.article_id}`}>
                       <CardMedia
                         component="div"
                         sx={{
