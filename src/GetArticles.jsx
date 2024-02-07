@@ -3,6 +3,7 @@ import Articalizer from "./Articalizer";
 
 export default function GetArticles() {
   const [articles, setArticles] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     fetch("https://nc-news-itve.onrender.com/api/articles")
@@ -11,7 +12,11 @@ export default function GetArticles() {
       })
       .then((result) => {
         setArticles(result.articles);
+        setIsLoading(false);
       });
   }, []);
-  return <Articalizer articles={articles} />;
+
+  if (isLoading === true) {
+    return <h1>LOADING...</h1>;
+  } else return <Articalizer articles={articles} />;
 }
