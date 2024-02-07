@@ -24,7 +24,7 @@ export default function Articalizer(props) {
         <Container sx={{ py: 8 }} maxWidth="md">
           {/* End hero unit */}
           <Grid container spacing={4}>
-            {articles.map((article) => (
+            {articles?.map((article) => (
               <Grid item key={articles.article_id} xs={12} sm={6} md={4}>
                 <Card
                   sx={{

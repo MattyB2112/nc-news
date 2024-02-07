@@ -21,10 +21,14 @@ export default function GetArticle() {
       <h1>{articleItem.title}</h1>
       <div className="article-header-holder">
         <p>Article by: {articleItem.author}</p>
-        <p>Votes: {articleItem.votes}</p>
+        <p>
+          Votes: {articleItem.votes}
+          <button>UPVOTE TO GO HERE</button>
+        </p>
       </div>
       <img src={articleItem.article_img_url} alt={articleItem.topic} />
       <p className="article-text">{articleItem.body}</p>
+      <h2>comment form to go here!</h2>
       <GetComments article_id={articleItem.article_id} />
     </div>
   );
