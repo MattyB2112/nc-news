@@ -34,7 +34,7 @@ export default function AddComment() {
   return (
     <div key="comment-container" className="comment-container">
       <form onSubmit={handleSubmit} className="comment-form" id="comment-form">
-        <h2>You are posting as: USERNAME TO GO HERE</h2>
+        <h2>You are posting as: {username}</h2>
         <label htmlFor="comment-main" className="comment-title">
           Enter your comment here:
         </label>
