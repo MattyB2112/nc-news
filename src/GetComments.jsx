@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function GetComments(props) {
   const { article_id } = props;
@@ -15,7 +16,7 @@ export default function GetComments(props) {
       .then((result) => {
         setComments(result);
       });
-  }, []);
+  }, [comments]);
 
   function handleClick(event) {
     event.preventDefault();
@@ -47,6 +48,7 @@ export default function GetComments(props) {
               <div className="comment-holder" key={comment.comment_id}>
                 <h4 className="comment-author">{comment.author}</h4>
                 <div className="comment-body">{comment.body}</div>
+                <div className="comment-posted-date">{comment.created_at}</div>
               </div>
             );
           })

@@ -12,7 +12,7 @@ export default function App() {
         <Header />
       </nav>
       <Routes>
-        <Route path="" element={<GetArticles />} />
+        <Route path="/" element={<GetArticles />} />
       </Routes>
       <Routes>
         <Route path="/:article_id" element={<GetArticle />} />

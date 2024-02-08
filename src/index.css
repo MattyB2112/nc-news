@@ -103,6 +103,31 @@ button:focus-visible {
   text-align: left;
 }
 
+.comment-container {
+}
+
+.comment-header {
+  justify-self: left;
+}
+
+.comment-form {
+  display: grid;
+  text-align: start;
+  align-items: start;
+}
+
+.comment-box {
+  text-align: start;
+  height: 100px;
+  word-wrap: normal;
+
+  align-self: start;
+}
+
+.comment-submit-button {
+  justify-self: left;
+}
+
 /*justify-content
 flex-start: Items align to the left side of the container.
 flex-end: Items align to the right side of the container.
