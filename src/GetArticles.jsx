@@ -1,20 +1,12 @@
 import { useState, useEffect } from "react";
 import Articalizer from "./Articalizer";
+import getArticles from "./getArticles";
 
 export default function GetArticles() {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    fetch("https://nc-news-itve.onrender.com/api/articles")
-      .then((response) => {
-        return response.json();
-      })
-      .then((result) => {
-        setArticles(result.articles);
-        setIsLoading(false);
-      });
-  }, []);
+  getArticles(articles, setArticles, isLoading, setIsLoading);
 
   if (isLoading === true) {
     return <h1>LOADING...</h1>;
