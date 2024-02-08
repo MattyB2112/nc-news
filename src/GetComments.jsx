@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import dateFormatter from "./dateFormatter";
+import deleteComment from "./DeleteComment";
 
 export default function GetComments(props) {
   const { article_id } = props;
@@ -48,7 +50,14 @@ export default function GetComments(props) {
               <div className="comment-holder" key={comment.comment_id}>
                 <h4 className="comment-author">{comment.author}</h4>
                 <div className="comment-body">{comment.body}</div>
-                <div className="comment-posted-date">{comment.created_at}</div>
+                <br />
+                <div className="comment-posted-date">
+                  Posted at:
+                  {dateFormatter(comment.created_at)}
+                </div>
+                <button onClick={() => deleteComment(comment.comment_id)}>
+                  delete comment
+                </button>
               </div>
             );
           })
