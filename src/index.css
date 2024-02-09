@@ -150,6 +150,11 @@ button:focus-visible {
   margin-right: 100px;
 }
 
+.page-not-found-img {
+  height: 600px;
+  width: auto;
+}
+
 /*justify-content
 flex-start: Items align to the left side of the container.
 flex-end: Items align to the right side of the container.

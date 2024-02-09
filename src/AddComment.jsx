@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { UpdateComments } from "./UpddateComments";
+import { UpdateComments } from "./UpdateComments";
 
 export default function AddComment() {
   const [commentBody, setCommentBody] = useState("");

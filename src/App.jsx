@@ -4,6 +4,7 @@ import { Routes, Route, useParams } from "react-router-dom";
 import ArticleItem from "./ArticleItem";
 import SortBy from "./SortBy";
 import ArticleCards from "./ArticleCards";
+import ErrorPage from "./ErrorPage";
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
       </nav>
       <Routes>
         <Route
+          exact
           path="/"
           element={
             <>
@@ -22,6 +24,7 @@ export default function App() {
           }
         />
         <Route path="/:article_id" element={<ArticleItem />} />
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </>
   );

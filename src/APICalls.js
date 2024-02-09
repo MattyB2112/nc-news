@@ -9,7 +9,12 @@ export function fetchTopics() {
 export function fetchSingleArticle(article_id) {
   return axios
     .get(`https://nc-news-itve.onrender.com/api/articles/${article_id}/`)
-    .then((result) => result);
+    .then((result) => result)
+    .catch((error) => {
+      if (error) {
+        return error;
+      }
+    });
 }
 
 export function fetchComments(article_id) {
@@ -17,7 +22,10 @@ export function fetchComments(article_id) {
     .get(
       `https://nc-news-itve.onrender.com/api/articles/${article_id}/comments`
     )
-    .then((result) => result);
+    .then((result) => result)
+    .catch((error) => {
+      return error;
+    });
 }
 
 export function fetchArticles(
@@ -29,11 +37,14 @@ export function fetchArticles(
     .get(
       `https://nc-news-itve.onrender.com/api/articles/?topic=${topic}&sort_by=${sortByQuery}&order=${orderQuery}`
     )
-    .then((result) => result);
+    .then((result) => result)
+    .catch((error) => {
+      console.log(error, "EERRROOORRRRR");
+    });
 }
 
 export function deleteComment(comment_id) {
-  axios
+  return axios
     .delete(`https://nc-news-itve.onrender.com/api/comments/${comment_id}`)
     .then((response) => {})
     .catch((error) => {
@@ -47,7 +58,10 @@ export function patchVotes(article_id, updateObject) {
       `https://nc-news-itve.onrender.com/api/articles/${article_id}`,
       updateObject
     )
-    .then((result) => result);
+    .then((result) => result)
+    .catch((error) => {
+      console.log(error, "EERRROOORRRRR");
+    });
 }
 
 export function postComment(article_id, commentObj) {
@@ -56,7 +70,12 @@ export function postComment(article_id, commentObj) {
       `https://nc-news-itve.onrender.com/api/articles/${article_id}/comments`,
       commentObj
     )
-    .then((result) => result);
+    .then((result) => result)
+    .catch((error) => {
+      if (error) {
+        return error;
+      }
+    });
 }
 
 export default {

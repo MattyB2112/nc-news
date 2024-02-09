@@ -1,3 +1,4 @@
+import Image from "./Images/pagenotfound.jpeg";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import CommentCards from "./CommentCards";
@@ -10,15 +11,35 @@ export default function ArticleItem() {
   let { article_id } = useParams();
   const [articleItem, setArticleItem] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetchSingleArticle(article_id).then((result) => {
-      setArticleItem(result.data.article[0]);
-      setIsLoading(false);
-    });
+    fetchSingleArticle(article_id)
+      .then((result) => {
+        setArticleItem(result.data.article[0]);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setError({ err });
+        setIsLoading(false);
+      });
   }, []);
 
-  if (isLoading === true) {
+  if (error) {
+    return (
+      <>
+        <h1>
+          Sorry, it doesnt look like that article doesn't exist, have you typed
+          the article ID correctly?
+        </h1>
+        <img
+          className="page-not-found-img"
+          src={Image}
+          alt="cartoon detective with a magnifying glass"
+        />
+      </>
+    );
+  } else if (isLoading === true) {
     return <h1>LOADING...</h1>;
   } else
     return (
