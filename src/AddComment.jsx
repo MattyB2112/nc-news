@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { postComment } from "./postComment";
+import { UpdateComments } from "./UpddateComments";
 
 export default function AddComment() {
   const [commentBody, setCommentBody] = useState("");
@@ -21,7 +21,7 @@ export default function AddComment() {
     commentObject.username = username;
     commentObject.body = commentBody;
     setCommentLoading(true);
-    postComment(
+    UpdateComments(
       commentObject,
       article_id,
       commentLoading,

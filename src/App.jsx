@@ -1,8 +1,9 @@
 import "./App.css";
 import Header from "./Header";
 import { Routes, Route, useParams } from "react-router-dom";
-import GetArticle from "./GetArticle";
-import GetArticles from "./GetArticles";
+import ArticleItem from "./ArticleItem";
+import SortBy from "./SortBy";
+import ArticleCards from "./ArticleCards";
 
 export default function App() {
   return (
@@ -11,8 +12,16 @@ export default function App() {
         <Header />
       </nav>
       <Routes>
-        <Route path="/" element={<GetArticles />} />
-        <Route path="/:article_id" element={<GetArticle />} />
+        <Route
+          path="/"
+          element={
+            <>
+              <SortBy />
+              <ArticleCards />
+            </>
+          }
+        />
+        <Route path="/:article_id" element={<ArticleItem />} />
       </Routes>
     </>
   );

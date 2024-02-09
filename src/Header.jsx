@@ -1,9 +1,22 @@
-import Dropdown from "react-bootstrap/Dropdown";
-import GetTopics from "./GetTopics";
-import { useState } from "react";
+import { fetchTopics } from "./APICalls";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
+
 export default function Header() {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [topics, setTopics] = useState([]);
-  const [topicChoice, setTopicChoice] = useState("");
+
+  function handleTopicChange(topic) {
+    const newParams = new URLSearchParams(searchParams);
+    newParams.set("topic", topic);
+    setSearchParams(newParams);
+  }
+
+  useEffect(() => {
+    fetchTopics().then((result) => {
+      setTopics(result.data.topics);
+    });
+  }, []);
 
   return (
     <>
@@ -14,11 +27,13 @@ export default function Header() {
               <h2>Topics</h2>
             </button>
             <div id="myDropdown" className="dropdown-content">
-              <GetTopics topics={topics} setTopics={setTopics} />
+              <button onClick={() => handleTopicChange("")}>all topics</button>
               {topics.map((topic) => {
                 return (
                   <div className="topics-holder">
-                    <a href={`?topic=${topic.slug}`}>{topic.slug}</a>
+                    <button onClick={() => handleTopicChange(topic.slug)}>
+                      {topic.slug}
+                    </button>
                   </div>
                 );
               })}

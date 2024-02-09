@@ -1,23 +1,17 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import dateFormatter from "./dateFormatter";
-import deleteComment from "./DeleteComment";
+import { deleteComment } from "./APICalls";
+import { fetchComments } from "./APICalls";
 
-export default function GetComments(props) {
+export default function CommentCards(props) {
   const { article_id } = props;
   const [comments, setComments] = useState([]);
   const [commentsHidden, setCommentsHidden] = useState(true);
 
   useEffect(() => {
-    fetch(
-      `https://nc-news-itve.onrender.com/api/articles/${article_id}/comments`
-    )
-      .then((response) => {
-        return response.json();
-      })
-      .then((result) => {
-        setComments(result);
-      });
+    fetchComments(article_id).then((response) => {
+      setComments(response.data);
+    });
   }, [comments]);
 
   function handleClick(event) {

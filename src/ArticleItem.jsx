@@ -1,23 +1,21 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import GetComments from "./GetComments";
+import CommentCards from "./CommentCards";
 import AddComment from "./AddComment";
 import handleVote from "./handleVote";
+import dateFormatter from "./dateFormatter";
+import { fetchSingleArticle } from "./APICalls";
 
-export default function GetArticle() {
+export default function ArticleItem() {
   let { article_id } = useParams();
   const [articleItem, setArticleItem] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`https://nc-news-itve.onrender.com/api/articles/${article_id}`)
-      .then((response) => {
-        return response.json();
-      })
-      .then((result) => {
-        setArticleItem(result.article[0]);
-        setIsLoading(false);
-      });
+    fetchSingleArticle(article_id).then((result) => {
+      setArticleItem(result.data.article[0]);
+      setIsLoading(false);
+    });
   }, []);
 
   if (isLoading === true) {
@@ -26,8 +24,9 @@ export default function GetArticle() {
     return (
       <div key={articleItem.article_id}>
         <h1>{articleItem.title}</h1>
+        <p>by {articleItem.author}</p>
         <div className="article-header-holder">
-          <p>Article by: {articleItem.author}</p>
+          <p>Posted at {dateFormatter(articleItem.created_at)}</p>
           <p>
             Votes: {articleItem.votes}
             <button onClick={() => handleVote(1, articleItem, setArticleItem)}>
@@ -41,7 +40,7 @@ export default function GetArticle() {
         <img src={articleItem.article_img_url} alt={articleItem.topic} />
         <p className="article-text">{articleItem.body}</p>
         <AddComment />
-        <GetComments article_id={articleItem.article_id} />
+        <CommentCards article_id={articleItem.article_id} />
       </div>
     );
 }
