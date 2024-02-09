@@ -7,14 +7,21 @@ export default function CommentCards(props) {
   const { article_id } = props;
   const [comments, setComments] = useState([]);
   const [commentsHidden, setCommentsHidden] = useState(true);
+  const [commentsChanged, setCommentsChanged] = useState(false);
 
   useEffect(() => {
     fetchComments(article_id).then((response) => {
       setComments(response.data);
     });
-  }, [comments]);
+  }, [commentsChanged]);
 
-  function handleClick(event) {
+  function handleDelete(comment_id) {
+    deleteComment(comment_id).then(() => {
+      setCommentsChanged(true);
+    });
+  }
+
+  function showOrHideComments(event) {
     event.preventDefault();
     if (commentsHidden === true) {
       setCommentsHidden(false);
@@ -33,7 +40,7 @@ export default function CommentCards(props) {
   } else
     return (
       <section className="comments">
-        <button className="show-hide-comments" onClick={handleClick}>
+        <button className="show-hide-comments" onClick={showOrHideComments}>
           <h4>{commentsHidden === true ? "Show" : "Hide"} Comments</h4>
         </button>
         {commentsHidden === true ? (
@@ -49,7 +56,7 @@ export default function CommentCards(props) {
                   Posted at:
                   {dateFormatter(comment.created_at)}
                 </div>
-                <button onClick={() => deleteComment(comment.comment_id)}>
+                <button onClick={() => handleDelete(comment.comment_id)}>
                   delete comment
                 </button>
               </div>

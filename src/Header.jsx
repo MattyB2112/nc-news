@@ -1,10 +1,11 @@
 import { fetchTopics } from "./APICalls";
 import { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useParams } from "react-router-dom";
 
 export default function Header() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [topics, setTopics] = useState([]);
+  const article_id = useParams();
 
   function handleTopicChange(topic) {
     const newParams = new URLSearchParams(searchParams);
