@@ -6,6 +6,7 @@ import AddComment from "./AddComment";
 import handleVote from "./handleVote";
 import dateFormatter from "./dateFormatter";
 import { fetchSingleArticle } from "./APICalls";
+import timeFormatter from "./timeFormatter";
 
 export default function ArticleItem() {
   let { article_id } = useParams();
@@ -29,8 +30,8 @@ export default function ArticleItem() {
     return (
       <>
         <h1>
-          Sorry, it doesnt look like that article doesn't exist, have you typed
-          the article ID correctly?
+          Sorry, it doesnt look like that article exists, have you typed the
+          article ID correctly?
         </h1>
         <img
           className="page-not-found-img"
@@ -43,24 +44,36 @@ export default function ArticleItem() {
     return <h1>LOADING...</h1>;
   } else
     return (
-      <div key={articleItem.article_id}>
-        <h1>{articleItem.title}</h1>
+      <div className="article-item" key={articleItem.article_id}>
+        <h1 className="article-item-header">{articleItem.title}</h1>
         <p>by {articleItem.author}</p>
         <div className="article-header-holder">
-          <p>Posted at {dateFormatter(articleItem.created_at)}</p>
           <p>
-            Votes: {articleItem.votes}
-            <button onClick={() => handleVote(1, articleItem, setArticleItem)}>
+            Posted at {timeFormatter(articleItem.created_at)} on{" "}
+            {dateFormatter(articleItem.created_at)}
+          </p>
+          <div className="votes-holder">
+            Votes: {articleItem.votes}&nbsp;
+            <button
+              className="vote-button"
+              onClick={() => handleVote(1, articleItem, setArticleItem)}
+            >
               👍
             </button>
-            <button onClick={() => handleVote(-1, articleItem, setArticleItem)}>
+            <button
+              className="vote-button"
+              onClick={() => handleVote(-1, articleItem, setArticleItem)}
+            >
               👎
             </button>
-          </p>
+          </div>
         </div>
-        <img src={articleItem.article_img_url} alt={articleItem.topic} />
+        <img
+          src={articleItem.article_img_url}
+          alt={`an image to do with ${articleItem.topic}`}
+          className="article-item-image"
+        />
         <p className="article-text">{articleItem.body}</p>
-        <AddComment />
         <CommentCards article_id={articleItem.article_id} />
       </div>
     );

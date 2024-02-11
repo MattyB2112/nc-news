@@ -1,16 +1,15 @@
 import { fetchTopics } from "./APICalls";
 import { useState, useEffect } from "react";
-import { useSearchParams, useParams } from "react-router-dom";
+import { useSearchParams, useParams, useNavigate } from "react-router-dom";
+import Link from "@mui/material/Link";
 
 export default function Header() {
+  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const [topics, setTopics] = useState([]);
-  const article_id = useParams();
 
-  function handleTopicChange(topic) {
-    const newParams = new URLSearchParams(searchParams);
-    newParams.set("topic", topic);
-    setSearchParams(newParams);
+  function handleClick(topic) {
+    navigate(`/topic=${topic}`, { replace: true });
   }
 
   useEffect(() => {
@@ -25,16 +24,24 @@ export default function Header() {
         <div key="flex-box-left-holder" className="flex-box-left-holder">
           <div className="dropdown">
             <button className="dropbtn">
-              <h2>Topics</h2>
+              <h2 className="topics-button-header">Topics</h2>
             </button>
             <div id="myDropdown" className="dropdown-content">
-              <button onClick={() => handleTopicChange("")}>all topics</button>
+              <div className="topics-holder">
+                <a href={`/`} className="topic-links">
+                  All Topics
+                </a>
+              </div>
               {topics.map((topic) => {
                 return (
                   <div className="topics-holder">
-                    <button onClick={() => handleTopicChange(topic.slug)}>
+                    <a
+                      href={`/?topic=${topic.slug}`}
+                      className="topic-links"
+                      onClick={() => handleClick(topic.slug)}
+                    >
                       {topic.slug}
-                    </button>
+                    </a>
                   </div>
                 );
               })}
@@ -46,7 +53,7 @@ export default function Header() {
         </h1>
         <div key="flex-box-right-holder" className="flex-box-right-holder">
           <h2 key="nav-login" className="nav-login">
-            Log-in
+            <button className="dropbtn">Login</button>
           </h2>
         </div>
       </div>

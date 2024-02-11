@@ -5,12 +5,15 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import CssBaseline from "@mui/material/CssBaseline";
+import dateFormatter from "./dateFormatter";
 import Grid from "@mui/material/Grid";
+import { HashLink } from "react-router-hash-link";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Link from "@mui/material/Link";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import SortBy from "./SortBy";
 const defaultTheme = createTheme();
 
 export default function Articalizer(props) {
@@ -18,10 +21,11 @@ export default function Articalizer(props) {
 
   return (
     <ThemeProvider theme={defaultTheme}>
+      <SortBy />
       <CssBaseline />
       <main>
         {/* Hero unit */}
-        <Container sx={{ py: 8 }} maxWidth="md">
+        <Container sx={{ py: 6 }} maxWidth="md">
           {/* End hero unit */}
           <Grid container spacing={4}>
             {articles?.map((article) => (
@@ -42,6 +46,7 @@ export default function Articalizer(props) {
                           pt: "56.25%",
                         }}
                         image={article.article_img_url}
+                        alt={`an image to do with ${article.topic}`}
                       />
                     </Link>
                   </CardActionArea>
@@ -52,15 +57,16 @@ export default function Articalizer(props) {
                     </Typography>
                     <Typography>
                       <p>{article.title}</p>
+                      <p>{dateFormatter(article.created_at)}</p>
+                      <p className="vote-count-home">{article.votes} Votes</p>
+                      <HashLink
+                        smooth
+                        to={`/${article.article_id}#comments-hash`}
+                      >
+                        {article.comment_count} Comments
+                      </HashLink>
                     </Typography>
                   </CardContent>
-
-                  <CardActions>
-                    <Button size="small">{article.votes} Votes</Button>
-                    <Button size="small">
-                      {article.comment_count} Comments
-                    </Button>
-                  </CardActions>
                 </Card>
               </Grid>
             ))}

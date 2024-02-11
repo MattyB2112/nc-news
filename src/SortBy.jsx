@@ -14,29 +14,43 @@ export default function SortBy() {
   return (
     <div className="sort-by-holder" id="sort-by-holder">
       <div className="dropdown">
-        <button className="dropbtn">
-          <h3>Sort By</h3>
+        <button className="dropbtn sort-by">
+          <h4>Sort By</h4>
         </button>
         <div id="myDropdown" className="dropdown-content">
           <div className="sort-by-list">
-            <button onClick={() => handleQueryChange("comment_count", "DESC")}>
-              Most commented
-            </button>
-            <button onClick={() => handleQueryChange("comment_count", "ASC")}>
-              Least commented
-            </button>
-            <button onClick={() => handleQueryChange("created_at", "DESC")}>
-              Newest
-            </button>
-            <button onClick={() => handleQueryChange("created_at", "ASC")}>
-              Oldest
-            </button>
-            <button onClick={() => handleQueryChange("votes", "DESC")}>
-              Most Voted
-            </button>
-            <button onClick={() => handleQueryChange("votes", "ASC")}>
-              Least Voted
-            </button>
+            <div className="sort-by-option">
+              <button
+                className="sort-by-button"
+                onClick={() => handleQueryChange("created_at", "DESC")}
+              >
+                Newest
+              </button>
+            </div>
+            <div className="sort-by-option">
+              <button
+                className="sort-by-button"
+                onClick={() => handleQueryChange("created_at", "ASC")}
+              >
+                Oldest
+              </button>
+            </div>
+            <div className="sort-by-option">
+              <button
+                className="sort-by-button"
+                onClick={() => handleQueryChange("votes", "DESC")}
+              >
+                Most Voted
+              </button>
+            </div>
+            <div className="sort-by-option">
+              <button
+                className="sort-by-button"
+                onClick={() => handleQueryChange("votes", "ASC")}
+              >
+                Least Voted
+              </button>
+            </div>
           </div>
         </div>
       </div>

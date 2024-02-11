@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { UpdateComments } from "./UpdateComments";
+import { fetchComments } from "./APICalls";
 
-export default function AddComment() {
+export default function AddComment(props) {
+  const { commentsChanged, setCommentsChanged } = props;
   const [commentBody, setCommentBody] = useState("");
   const [username, setUsername] = useState("tickle122");
   const { article_id } = useParams();
   const [commentLoading, setCommentLoading] = useState(false);
+  const [commentPosted, setCommentPosted] = useState(false);
   const commentObject = {};
-
-  useEffect(() => {});
 
   function handleCommentChange(event) {
     event.preventDefault();
@@ -27,8 +28,11 @@ export default function AddComment() {
       commentLoading,
       setCommentLoading,
       commentBody,
-      setCommentBody
+      setCommentBody,
+      commentPosted,
+      setCommentPosted
     );
+    setCommentsChanged(true);
   }
 
   return (
@@ -38,7 +42,7 @@ export default function AddComment() {
         <label htmlFor="comment-main" className="comment-title">
           Enter your comment here:
         </label>
-        <input
+        <textarea
           type="text"
           id="comment-main"
           required
@@ -54,6 +58,7 @@ export default function AddComment() {
         >
           {commentLoading === false ? "Post comment" : "Posting comment..."}
         </button>
+        <br />
       </form>
     </div>
   );

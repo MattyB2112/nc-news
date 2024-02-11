@@ -78,11 +78,23 @@ export function postComment(article_id, commentObj) {
     });
 }
 
+export function fetchUsers() {
+  return axios
+    .get(`https://nc-news-itve.onrender.com/api/users`)
+    .then((result) => result)
+    .catch((error) => {
+      if (error) {
+        return error;
+      }
+    });
+}
+
 export default {
   fetchTopics,
   fetchSingleArticle,
   fetchComments,
   fetchArticles,
+  fetchUsers,
   deleteComment,
   patchVotes,
   postComment,

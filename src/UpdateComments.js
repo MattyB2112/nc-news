@@ -7,10 +7,13 @@ export function UpdateComments(
   commentLoading,
   setCommentLoading,
   commentBody,
-  setCommentBody
+  setCommentBody,
+  commentPosted,
+  setCommentPosted
 ) {
   postComment(article_id, commentObj).then((response) => {
     setCommentLoading(false);
     setCommentBody("");
+    setCommentPosted(true);
   });
 }

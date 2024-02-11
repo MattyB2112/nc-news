@@ -1,4 +1,4 @@
-export default function dateFormatter(date) {
+export default function timeFormatter(date) {
   var date = new Date(date);
   var thing = date.toISOString().substring(0, 16).replace("T", " ");
   var yyyy = date.toISOString().substring(0, 4);
@@ -7,5 +7,5 @@ export default function dateFormatter(date) {
   var hh = date.toISOString().substring(11, 14);
   var ms = date.toISOString().substring(14, 16);
 
-  return dd + "-" + mm + "-" + yyyy;
+  return hh + ms;
 }
