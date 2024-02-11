@@ -56,7 +56,11 @@ export default function Articalizer(props) {
                       {article.topic}
                     </Typography>
                     <Typography>
-                      <p>{article.title}</p>
+                      {article.title.length < 53 ? (
+                        <p>{article.title}</p>
+                      ) : (
+                        <p>{article.title.substring(0, 53)}...</p>
+                      )}
                       <p>{dateFormatter(article.created_at)}</p>
                       <p className="vote-count-home">{article.votes} Votes</p>
                       <HashLink
