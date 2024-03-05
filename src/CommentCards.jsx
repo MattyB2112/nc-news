@@ -55,7 +55,7 @@ export default function CommentCards(props) {
         <section className="comments" id="comments-hash">
           <button className="show-hide-comments" onClick={showOrHideComments}>
             <h4>
-              {commentsHidden === true ? "Show" : "Hide"}
+              {commentsHidden === true ? "Show " : "Hide "}
               Comments
             </h4>
           </button>
