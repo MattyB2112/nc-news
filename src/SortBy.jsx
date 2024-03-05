@@ -20,36 +20,40 @@ export default function SortBy() {
         <div id="myDropdown" className="dropdown-content">
           <div className="sort-by-list">
             <div className="sort-by-option">
-              <button
+              <a
+                href={`/?sort_by=created_at&order=DESC`}
                 className="sort-by-button"
                 onClick={() => handleQueryChange("created_at", "DESC")}
               >
                 Newest
-              </button>
+              </a>
             </div>
             <div className="sort-by-option">
-              <button
+              <a
+                href={`/?sort_by=created_at&order=ASC`}
                 className="sort-by-button"
                 onClick={() => handleQueryChange("created_at", "ASC")}
               >
                 Oldest
-              </button>
+              </a>
             </div>
             <div className="sort-by-option">
-              <button
+              <a
+                href={`/?sort_by=votes&order=DESC`}
                 className="sort-by-button"
                 onClick={() => handleQueryChange("votes", "DESC")}
               >
                 Most Voted
-              </button>
+              </a>
             </div>
             <div className="sort-by-option">
-              <button
+              <a
+                href={`/?sort_by=votes&order=ASC`}
                 className="sort-by-button"
                 onClick={() => handleQueryChange("votes", "ASC")}
               >
                 Least Voted
-              </button>
+              </a>
             </div>
           </div>
         </div>

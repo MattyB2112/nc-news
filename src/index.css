@@ -262,6 +262,10 @@ button:focus-visible {
   width: 100%;
 }
 
+.sort-by-button:hover {
+  background-color: rgba(224, 206, 183, 0.973);
+}
+
 .page-not-found-img {
   height: 600px;
   width: auto;
