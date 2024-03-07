@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import dateFormatter from "./dateFormatter";
 import { deleteComment, fetchComments, fetchUsers } from "./APICalls";
 import timeFormatter from "./timeFormatter";
 import AddComment from "./AddComment";
+import { UserContext } from "./UserContext";
 
 export default function CommentCards(props) {
   const { article_id } = props;
@@ -10,6 +11,7 @@ export default function CommentCards(props) {
   const [commentsHidden, setCommentsHidden] = useState(true);
   const [commentsChanged, setCommentsChanged] = useState(false);
   const [users, setUsers] = useState([]);
+  const { signedInUser } = useContext(UserContext);
 
   useEffect(() => {
     fetchComments(article_id).then((response) => {
@@ -87,13 +89,14 @@ export default function CommentCards(props) {
                     <div className="comment-body">{comment.body}</div>
                     <br />
                   </div>
-
-                  <button
-                    className="delete-comment-button"
-                    onClick={() => handleDelete(comment.comment_id)}
-                  >
-                    Delete comment
-                  </button>
+                  {comment.author === localStorage.getItem("name") ? (
+                    <button
+                      className="delete-comment-button"
+                      onClick={() => handleDelete(comment.comment_id)}
+                    >
+                      Delete comment
+                    </button>
+                  ) : null}
                 </>
               );
             })

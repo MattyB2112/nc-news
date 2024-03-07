@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { UpdateComments } from "./UpdateComments";
 import { fetchComments } from "./APICalls";
+import { UserContext } from "./UserContext";
 
 export default function AddComment(props) {
   const { commentsChanged, setCommentsChanged } = props;
@@ -11,6 +12,7 @@ export default function AddComment(props) {
   const [commentLoading, setCommentLoading] = useState(false);
   const [commentPosted, setCommentPosted] = useState(false);
   const commentObject = {};
+  const { signedInUser } = useContext(UserContext);
 
   function handleCommentChange(event) {
     event.preventDefault();
@@ -38,7 +40,7 @@ export default function AddComment(props) {
   return (
     <div key="comment-container" className="comment-container">
       <form onSubmit={handleSubmit} className="comment-form" id="comment-form">
-        <h2>You are posting as: {username}</h2>
+        <h2>You are posting as: {localStorage.getItem("name")}</h2>
         <label htmlFor="comment-main" className="comment-title">
           Enter your comment here:
         </label>

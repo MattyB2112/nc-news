@@ -11,6 +11,8 @@ export default function SortBy() {
     setSearchParams(newParams);
   }
 
+  const currentUrl = window.location.href;
+
   return (
     <div className="sort-by-holder" id="sort-by-holder">
       <div className="dropdown">
@@ -21,7 +23,7 @@ export default function SortBy() {
           <div className="sort-by-list">
             <div className="sort-by-option">
               <a
-                href={`/?sort_by=created_at&order=DESC`}
+                href={`${currentUrl}`}
                 className="sort-by-button"
                 onClick={() => handleQueryChange("created_at", "DESC")}
               >
@@ -30,7 +32,7 @@ export default function SortBy() {
             </div>
             <div className="sort-by-option">
               <a
-                href={`/?sort_by=created_at&order=ASC`}
+                href={`${currentUrl}`}
                 className="sort-by-button"
                 onClick={() => handleQueryChange("created_at", "ASC")}
               >
@@ -39,7 +41,7 @@ export default function SortBy() {
             </div>
             <div className="sort-by-option">
               <a
-                href={`/?sort_by=votes&order=DESC`}
+                href={`${currentUrl}`}
                 className="sort-by-button"
                 onClick={() => handleQueryChange("votes", "DESC")}
               >
@@ -48,7 +50,7 @@ export default function SortBy() {
             </div>
             <div className="sort-by-option">
               <a
-                href={`/?sort_by=votes&order=ASC`}
+                href={`${currentUrl}`}
                 className="sort-by-button"
                 onClick={() => handleQueryChange("votes", "ASC")}
               >

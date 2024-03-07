@@ -1,9 +1,12 @@
 import { fetchTopics } from "./APICalls";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useSearchParams, useParams, useNavigate } from "react-router-dom";
 import Link from "@mui/material/Link";
+import { UserContext } from "./UserContext";
+import Heading from "./Images/header.png";
 
 export default function Header() {
+  const { signedInUser } = useContext(UserContext);
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const [topics, setTopics] = useState([]);
@@ -49,13 +52,20 @@ export default function Header() {
           </div>
         </div>
         <h1 key="nav-header" className="nav-header">
-          Welcome to NC-News!
+          <img src={Heading} alt="networking and news heading" />
         </h1>
         <div key="flex-box-right-holder" className="flex-box-right-holder">
           <h2 key="nav-login" className="nav-login">
-            <button className="dropbtn">Login</button>
+            <Link className="login-button" href={"/login"}>
+              <button className="dropbtn">Login</button>
+            </Link>
           </h2>
         </div>
+      </div>
+      <div>
+        {signedInUser
+          ? `Logged in as: ${localStorage.getItem("name")}`
+          : "Not logged in"}
       </div>
     </>
   );

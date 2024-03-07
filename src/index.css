@@ -37,7 +37,7 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
-  align-content: center;
+  /* align-content: center; */
   align-items: center;
 }
 button:hover {
@@ -76,6 +76,32 @@ button:focus-visible {
   color: "black";
 }
 
+.login-button {
+  text-decoration: none;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+.user-image {
+  height: 80px;
+  width: 80px;
+  background-color: antiquewhite;
+  margin-top: 30px;
+}
+
+.user-holder {
+  display: flex;
+  justify-content: space-between;
+  max-width: 250px;
+}
+
+.user-username {
+  align-self: center;
+  justify-self: center;
+}
+
 .nav-bar {
   display: flex;
   justify-content: space-evenly;
@@ -86,6 +112,7 @@ button:focus-visible {
   justify-content: center;
   align-items: center;
   text-align: center;
+  width: auto;
 }
 
 .dropdown {
