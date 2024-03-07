@@ -9,12 +9,7 @@ import { useState, useEffect } from "react";
 import { UserContext } from "./UserContext";
 
 export default function App({ children }) {
-  const [signedInUser, setSignedInUser] = useState({
-    username: "tickle122",
-    name: "Tom Tickle",
-    avatar_url:
-      "https://vignette.wikia.nocookie.net/mrmen/images/d/d6/Mr-Tickle-9a.png/revision/latest?cb=20180127221953",
-  });
+  const [signedInUser, setSignedInUser] = useState({});
 
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(signedInUser));

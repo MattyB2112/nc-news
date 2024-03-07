@@ -63,7 +63,7 @@ export default function Header() {
         </div>
       </div>
       <div>
-        {signedInUser
+        {signedInUser && localStorage.getItem("name")
           ? `Logged in as: ${localStorage.getItem("name")}`
           : "Not logged in"}
       </div>
