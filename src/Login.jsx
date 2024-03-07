@@ -20,16 +20,20 @@ export default function LoginPage() {
 
   return (
     <div>
+      <h2>Click a picture below to log in!</h2>
       {users?.map((user) => {
         return (
           <div className="user-holder">
-            <button
-              onClick={() => {
-                changeUser(user);
-              }}
-            >
-              <img className="user-image" src={user.avatar_url} />
-            </button>
+            <div className="picture-and-button">
+              <button
+                className="user-button"
+                onClick={() => {
+                  changeUser(user);
+                }}
+              >
+                <img className="user-image" src={user.avatar_url} />
+              </button>
+            </div>
             <div className="user-username">{user.username}</div>
           </div>
         );

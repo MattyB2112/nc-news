@@ -85,21 +85,30 @@ a:link {
 }
 
 .user-image {
-  height: 80px;
-  width: 80px;
+  display: flex;
+  height: 90px;
+  width: 100px;
   background-color: antiquewhite;
-  margin-top: 30px;
+  vertical-align: middle;
 }
 
 .user-holder {
   display: flex;
   justify-content: space-between;
-  max-width: 250px;
+  max-width: 280px;
+}
+.picture-and-button {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: inline-block;
 }
 
 .user-username {
   align-self: center;
-  justify-self: center;
+  text-align: right;
 }
 
 .nav-bar {
@@ -274,11 +283,6 @@ a:link {
   background-color: antiquewhite;
   border: solid rgb(206, 176, 138) 2px;
   font-weight: bold;
-}
-
-.sort-by-holder {
-  /* display: flex;
-  justify-content: flex-end; */
 }
 
 .sort-by-list {
